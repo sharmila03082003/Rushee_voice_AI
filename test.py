@@ -174,4 +174,81 @@ while True:
 
     queue.append(enter)
     print(queue)
+
+import time
+import datetime
+import pywhatkit as kit
+
+class WhatsAppBot:
+    def __init__(self):
+        pass
+
+    def take_Command(self):
+        # Simulate taking command from user
+        return input("Enter command: ")
+
+    def talk(self, message):
+        # Simulate speaking the message
+        print(message)
+
+    def SearchCont(self, command):
+        # Simulate searching for contact
+        # Return (name, numberID, F)
+        return ("Rock Ravi", "+919025328897", True)
+
+    def AddContact(self):
+        # Simulate adding a new contact
+        pass
+
+    def whatsapp(self, command):
+        try:
+            command = command.replace('send a message to', '')
+            command = command.strip()
+            name, numberID, F = self.SearchCont(command)
+            if F:
+                print(numberID)
+                self.talk(f'Boss, what message do you want to send to {name}')
+                message = self.take_Command()
+                hour = int(datetime.datetime.now().hour)
+                min = int(datetime.datetime.now().minute)
+                print(hour, min)
+                if "group" in command:
+                    time.sleep(10)  # Wait for 10 seconds before sending the message
+                    kit.sendwhatmsg_to_group(numberID, message, int(hour), int(min) + 1)
+                else:
+                    time.sleep(10)  # Wait for 10 seconds before sending the message
+                    kit.sendwhatmsg(numberID, message, int(hour), int(min) + 1)
+                self.talk("Boss message have been sent")
+            if not F:
+                self.talk(f'Boss, the name not found in our data base, shall I add the contact')
+                AddOrNot = self.take_Command()
+                print(AddOrNot)
+                if ("yes" in AddOrNot) or ("add" in AddOrNot) or ("yeah" in AddOrNot) or ("yah" in AddOrNot):
+                    self.AddContact()
+                elif "no" in AddOrNot:
+                    self.talk('Ok Boss')
+        except Exception as e:
+            print(f"Error occurred: {e}")
+
+if __name__ == "__main__":
+    bot = WhatsAppBot()
+    bot.whatsapp("send a message to Rock Ravi")
+
+
+
 '''
+import os
+
+def get_user_names():
+    user_names = []
+    try:
+        user_dirs = os.listdir('C:/Users')  # Assuming user directories are located in C:\Users
+        for user_dir in user_dirs:
+            user_names.append(user_dir)
+    except Exception as e:
+        print(f"Error accessing user directories: {e}")
+    return user_names
+
+# Get the list of user names
+user_names = get_user_names()
+print("User Names:", user_names)
