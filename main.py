@@ -12,6 +12,7 @@ import wikipedia
 import ctypes
 from getallapps import get_to_open
 from close_the_app import close_app
+from microphonechecking import mic_checking
 
 
 
@@ -29,7 +30,7 @@ def talk(talk):
 
 
 def listening_cmd():
-    if sr.Microphone() :
+    if mic_checking():
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Listening...")
