@@ -35,7 +35,7 @@ def listening_cmd():
         with sr.Microphone() as source:
             print("Listening...")
             r.pause_threshold = 1
-            audio = r.listen(source, timeout=2, phrase_time_limit=5)
+            audio = r.listen(source, phrase_time_limit=5)
 
         try:
             print("Recognizing...")
@@ -179,3 +179,5 @@ if __name__ == "__main__":
     wish()
     talk("welcome sir , I am rushe your assistant ")
     thecmdrushe()
+
+#this is testing line
