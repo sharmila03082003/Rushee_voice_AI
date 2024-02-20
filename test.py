@@ -237,18 +237,21 @@ if __name__ == "__main__":
 
 
 '''
-import os
 
-def get_user_names():
-    user_names = []
+from googlesearch import search
+
+def google_search(query, num_results=5):
     try:
-        user_dirs = os.listdir('C:/Users')  # Assuming user directories are located in C:\Users
-        for user_dir in user_dirs:
-            user_names.append(user_dir)
-    except Exception as e:
-        print(f"Error accessing user directories: {e}")
-    return user_names
+        # Perform the Google search
+        search_results = search(query, num_results=num_results)
 
-# Get the list of user names
-user_names = get_user_names()
-print("User Names:", user_names)
+        # Print the search results
+        for i, result in enumerate(search_results, start=1):
+            print(f"Result {i}: {result}")
+
+    except Exception as e:
+        print("An error occurred:", e)
+
+if __name__ == "__main__":
+    search_query = input("Enter the query you want to search on Google: ")
+    google_search(search_query)

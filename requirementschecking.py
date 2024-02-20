@@ -1,7 +1,8 @@
 import pyaudio
 import sounddevice as sd
+import os 
+
 def mic_checking():
-    # Initialize PyAudio
     audio = pyaudio.PyAudio()
 
     # Get the number of available audio devices
@@ -35,3 +36,27 @@ def mic_checking():
     else:
         #print("Microphone is not connected.")
         return False
+    
+
+def get_user_name():
+    user_names = []
+    try:
+        user_dirs = os.listdir('C:/Users')  
+        for user_dir in user_dirs:
+            user_names.append(user_dir)
+    except Exception as e:
+        print(f"Error accessing user directories: {e}")
+    
+    remove_the_unwantedusers = ['All Users', 'Default', 'Default User', 'desktop.ini', 'Public']
+    
+    # Remove unwanted user names from the list
+    user_names = [user for user in user_names if user not in remove_the_unwantedusers]
+
+    return str(user_names[0])
+
+userName = get_user_name()
+openPath = ("C:\\Users\\default\\Downloads")   
+
+newpath = openPath.replace('default',get_user_name())
+
+

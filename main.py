@@ -12,7 +12,8 @@ import wikipedia
 import ctypes
 from getallapps import get_to_open
 from close_the_app import close_app
-from microphonechecking import mic_checking
+from checking import mic_checking
+from checking import get_user_name
 
 
 
@@ -89,16 +90,10 @@ def thecmdrushe():
                     jk = pyjokes.get_joke()
                     print(jk)
                     talk(jk)
-                elif "who is" in secondary_cmd or "what is" in secondary_cmd:
-                    if "who is" in secondary_cmd:
-                        query = secondary_cmd.replace('who is', '', 1)
-                    elif "what is" in secondary_cmd:
-                        query = secondary_cmd.replace('what is', '', 1)
-                    info = wikipedia.summary(query, sentences=3)
-                    print(info)
-                    talk(info)
+                
                 elif "open download" in secondary_cmd or "open download path" in secondary_cmd:
-                    os.startfile("C:\\Users\\fortever\\Downloads")     #replace your user path
+                    openPath = ("C:\\Users\\default\\Downloads")   
+                    
                 elif "open video" in secondary_cmd or "open video path"  in secondary_cmd:
                     os.startfile("C:\\Users\\fortever\\Video")     #replace your user path
                 # close app
