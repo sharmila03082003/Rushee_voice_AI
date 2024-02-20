@@ -8,12 +8,11 @@ import datetime
 import os 
 import subprocess as sp
 import pyjokes
-import wikipedia
 import ctypes
 from getallapps import get_to_open
 from close_the_app import close_app
-from checking import mic_checking
-from checking import get_user_name
+from requirementschecking import mic_checking
+from requirementschecking import get_user_name
 
 
 
